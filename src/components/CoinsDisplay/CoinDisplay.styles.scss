@@ -1,0 +1,66 @@
+$baseColor: #4369b2;
+
+.coin-display-container {
+  font-size: 0.8em;
+  padding: 0.5em;
+
+  .coin-display-list {
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    grid-gap: 0.5em;
+
+    .coin-display-list-item {
+      .coin-card {
+        display: flex;
+        background-color: $baseColor;
+        color: white;
+        border-radius: 5px;
+        padding: 0.4em;
+        opacity: 0.8;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+
+        .coin-image-container {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          width: 45%;
+
+          .coin-image {
+            width: 50px;
+            height: 50px;
+          }
+        }
+
+        .coin-details {
+          display: flex;
+          flex-direction: column;
+
+          .title {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: white;
+          }
+
+          .symbol {
+            font-size: 1.2em;
+          }
+
+          .market-cap {
+            font-size: 0.8em;
+          }
+
+          .price {
+            font-size: 0.8em;
+          }
+
+          .rank {
+            font-size: 0.8em;
+          }
+        }
+      }
+    }
+  }
+}
