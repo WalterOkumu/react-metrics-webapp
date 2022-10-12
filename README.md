@@ -15,7 +15,6 @@
 - React Loading
 - Millify
 - React Sparklines
-- ChartJS
 - React Icons
 - HTML-React-Parser
 - Jest
