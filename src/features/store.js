@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { cryptoAPI } from './cryptoSlice';
+import logger from 'redux-logger';
+import cryptoSlice from './cryptoSlice';
 
-const store = configureStore({
+export default configureStore({
   reducer: {
-    cryptoAPI: cryptoAPI.reducer,
+    crypto: cryptoSlice,
   },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
-
-export default store;

@@ -1,20 +1,50 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-const baseURL = process.env.REACT_APP_BASE_URL;
+const baseUrl = process.env.REACT_APP_BASE_URL_DEV;
 
-const createRequest = (url) => ({ url });
+const initialState = {
+  data: [],
+  coin: [],
+  loading: true,
+};
 
-export const cryptoAPI = createApi({
-  reducerPath: 'cryptoAPI',
-  baseQuery: fetchBaseQuery({ baseURL }),
-  endpoints: (builder) => ({
-    getCryptos: builder.query({
-      query: () => createRequest('/coins'),
-    }),
-    getCryptoDetails: builder.query({
-      query: (coinId) => createRequest(`/coins/${coinId}`),
-    }),
-  }),
+export const fetchCrypto = createAsyncThunk('crypto/fetchCrypto', async () => {
+  const data = await fetch(`${baseUrl}/coins`)
+    .then((response) => response.json())
+    .catch((error) => {
+      throw new Error(error);
+    });
+  return data;
 });
 
-export const { useGetCryptosQuery, useLazyGetCryptoDetailsQuery } = cryptoAPI;
+export const findCoin = createAsyncThunk('crypto/findCoin', async (id) => {
+  const data = await fetch(`${baseUrl}/coins/${id}`)
+    .then((response) => response.json())
+    .catch((error) => {
+      throw new Error(error);
+    });
+  return data;
+});
+
+const cryptoSlice = createSlice({
+  name: 'crypto',
+  initialState,
+  reducers: {},
+  extraReducers(builder) {
+    builder
+      .addCase(fetchCrypto.pending, (state) => ({ ...state, loading: true }))
+      .addCase(fetchCrypto.fulfilled, (state, { payload }) => ({
+        ...state,
+        loading: false,
+        data: payload,
+      }))
+      .addCase(findCoin.pending, (state) => ({ ...state, loading: true }))
+      .addCase(findCoin.fulfilled, (state, { payload }) => ({
+        ...state,
+        loading: false,
+        coin: payload,
+      }));
+  },
+});
+
+export default cryptoSlice.reducer;

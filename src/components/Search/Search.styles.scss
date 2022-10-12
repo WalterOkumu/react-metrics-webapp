@@ -1,0 +1,10 @@
+$baseColor: #4369b2;
+
+.search-input-box {
+  display: flex;
+  flex: auto;
+  height: 2em;
+  border: 1px solid $baseColor;
+  border-radius: 5px;
+  background-color: lightgray;
+}
