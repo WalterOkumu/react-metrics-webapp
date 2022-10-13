@@ -23,7 +23,8 @@
 
 ## Live Demo (if available)
 
-[Live Demo Link](https://okumu-react-metrics-webapp.netlify.app/)
+- [Live Demo Link](https://okumu-react-metrics-webapp.netlify.app/)
+- [Video Demo link](https://drive.google.com/file/d/1cihnP2PhwtxcRA6E2CTE--StR55Mg9l-/view?usp=sharing)
 
 ## Getting Started
 
